@@ -10,4 +10,4 @@ Route::get('/', function () {
 
 Route::get('/company',[homeController::class,'companyInfo']);
 
-Route::get('/discount',[productController::class,'price']);
+Route::get('/discount',[productController::class,'price'])->middleware('log');

@@ -1,4 +1,5 @@
 <?php
+error_log('1. Request entered public/index.php');
 
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
