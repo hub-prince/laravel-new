@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Log;
+use App\Services\paymentService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,8 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
-    }
+        $this->app->bind(paymentService::class,function(){
+            return new paymentService();
+        });
+    }   
 
     /**
      * Bootstrap any application services.
