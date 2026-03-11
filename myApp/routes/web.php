@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\productController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('hello');
 });
 
 Route::get('/company',[homeController::class,'companyInfo']);
