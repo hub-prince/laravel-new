@@ -123,4 +123,10 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'aliases' => [
+
+    'Greeting' => App\Facades\Greeting::class,
+
+],
+
 ];

@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Services\greetingService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Log;
 use App\Services\paymentService;
+ 
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(paymentService::class,function(){
             return new paymentService();
+        });
+
+        $this->app->bind('greeting',function(){
+            return new greetingService();
         });
     }   
 
