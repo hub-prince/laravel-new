@@ -72,4 +72,8 @@ Route::get('/product/{product}', function (Product $product) {
 
 Route::get('/dashboard-invoke', DashboardController::class);
 
-Route::resource('post',[PostController::class]);
+Route::resource('posts',PostController::class);
+
+Route::get('/posts/json', [PostController::class, 'jsonResponse']);
+Route::get('/posts/download', [PostController::class, 'download']);
+Route::get('/posts/macro', [PostController::class, 'macroExample']);
