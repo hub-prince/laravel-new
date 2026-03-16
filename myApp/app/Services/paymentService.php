@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Log;
 use App\Facades\Greeting;
 
 class paymentService
-{
+{   
      public function __construct()
     {
         Log::info('PaymentService instance created');
