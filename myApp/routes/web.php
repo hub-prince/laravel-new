@@ -35,7 +35,7 @@ Route::get('/dashboard', function () {       // named route
 
 Route::redirect('/dashboard', '/form', 301);   // redirect
 
-Route::prefix('admin')->group(function () {    // prefix route group
+Route::middleware('role:user')->prefix('admin')->group(function () {    // prefix route group
 
     Route::get('/dash', function () {
         return "Admin Dashboard";
