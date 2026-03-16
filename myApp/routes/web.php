@@ -5,7 +5,8 @@ use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\productController;
 use App\Models\Product;
-use App\Http\Controllers\DashboardController;   
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('hello');
@@ -35,7 +36,7 @@ Route::get('/dashboard', function () {       // named route
 
 Route::redirect('/dashboard', '/form', 301);   // redirect
 
-Route::middleware('role:user')->prefix('admin')->group(function () {    // prefix route group
+Route::middleware('role:admin')->prefix('admin')->group(function () {    // prefix route group
 
     Route::get('/dash', function () {
         return "Admin Dashboard";
@@ -70,3 +71,5 @@ Route::get('/product/{product}', function (Product $product) {
 });
 
 Route::get('/dashboard-invoke', DashboardController::class);
+
+Route::resource('post',[PostController::class]);
