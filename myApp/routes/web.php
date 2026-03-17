@@ -77,3 +77,5 @@ Route::resource('posts',PostController::class);
 Route::get('/posts/json', [PostController::class, 'jsonResponse']);
 Route::get('/posts/download', [PostController::class, 'download']);
 Route::get('/posts/macro', [PostController::class, 'macroExample']);
+ 
+Route::view('/home','home',['users'=>["prince","jaimin","keval","meet","swet"]]);
