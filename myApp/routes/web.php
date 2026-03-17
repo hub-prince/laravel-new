@@ -7,8 +7,10 @@ use App\Http\Controllers\productController;
 use App\Models\Product;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 
-Route::get('/', function () {
+
+Route::get('/hello', function () {
     return view('hello');
 });
 
@@ -30,11 +32,11 @@ Route::get('/form/{id?}',function($id = 3){    // optional params
     return "$id form created successfully";
 });
 
-Route::get('/dashboard', function () {       // named route
+Route::get('/dashbord', function () {       // named route
     return "Dashboard Page";
 })->name('dashboard');
 
-Route::redirect('/dashboard', '/form', 301);   // redirect
+Route::redirect('/dashbord', '/form');   // redirect
 
 Route::middleware('role:admin')->prefix('admin')->group(function () {    // prefix route group
 
@@ -50,7 +52,7 @@ Route::middleware('role:admin')->prefix('admin')->group(function () {    // pref
 
 Route::middleware(['log'])->group(function () {   // middleware route group
 
-    Route::get('/profile', function () {
+    Route::get('/profile-old', function () {
         return "User Profile";
     });
 
@@ -79,3 +81,22 @@ Route::get('/posts/download', [PostController::class, 'download']);
 Route::get('/posts/macro', [PostController::class, 'macroExample']);
  
 Route::view('/home','home',['users'=>["prince","jaimin","keval","meet","swet"]]);
+
+
+
+// --------------------------------AUTH WITH BREEZ------------------------------------- //
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
