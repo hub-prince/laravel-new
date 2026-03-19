@@ -49,7 +49,9 @@ class productController extends Controller
             echo "Category is filled.<br>";
         }
 
-        $path = $request->file('image')->store('products');
+        $file = $request->file('image');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('images'), $filename);
 
         // Save data (example)
         Product::create([
@@ -57,7 +59,7 @@ class productController extends Controller
             'price' => $request->price,
             'description' => $request->description,
             'category' => $request->category,
-            'image' => $path
+            'image' => $filename
         ]);
 
 
@@ -86,5 +88,10 @@ class productController extends Controller
 
         // Return result
         return response()->json(array_values($filtered));
+    }
+
+    public function index(){
+        $products = Product::all();
+        return view('products.index',compact('products'));
     }
 }

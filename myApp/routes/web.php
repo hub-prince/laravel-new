@@ -65,13 +65,7 @@ Route::middleware(['log'])->group(function () {   // middleware route group
 Route::fallback(function(){
     return "page not found";
 });
-
-Route::get('/product/{product}', function (Product $product) {
-
-    return $product;
-
-});
-
+ 
 Route::get('/dashboard-invoke', DashboardController::class);
 
 Route::resource('posts',PostController::class);
@@ -111,3 +105,4 @@ require __DIR__.'/auth.php';
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
+Route::get('/products/index', [ProductController::class, 'index'])->name('products.index');
