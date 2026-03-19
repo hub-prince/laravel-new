@@ -1,5 +1,13 @@
 <!-- resources/views/products/create.blade.php -->
-
+@if ($errors->any())
+    <div style="color:red;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +34,7 @@
 
         <button type="submit">Add Product</button>
     </form>
-    
+
 <form method="GET" action="{{ route('products.search') }}">
     <input type="text" name="category" placeholder="Category">
     <input type="number" name="price" placeholder="Max Price">

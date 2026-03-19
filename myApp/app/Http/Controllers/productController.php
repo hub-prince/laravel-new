@@ -25,34 +25,43 @@ class productController extends Controller
         return view('products.create');
     }
 
-    public function store(Request $request){
-        // 1. Using input()
-        $name = $request->input('name');
+  public function store(Request $request)
+{
+    // ✅ Validation
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'price' => 'required|numeric|min:0',
+        'description' => 'nullable|string',
+        'category' => 'required|string|max:100',
+    ]);
 
-        // 2. Using property access
-        $price = $request->price;
+    // 1. Using input()
+    $name = $request->input('name');
 
-        // 3. Using all()
-        $allData = $request->all();
+    // 2. Using property access
+    $price = $request->price;
 
-        // Testing has()
-        if ($request->has('description')) {
-            echo "Description field exists.<br>";
-        }
+    // 3. Using all()
+    $allData = $request->all();
 
-        // Testing filled()
-        if ($request->filled('category')) {
-            echo "Category is filled.<br>";
-        }
-
-        // Display data
-        echo "Name: " . $name . "<br>";
-        echo "Price: " . $price . "<br>";
-
-        echo "<pre>";
-        print_r($allData);
-        echo "</pre>";
+    // Testing has()
+    if ($request->has('description')) {
+        echo "Description field exists.<br>";
     }
+
+    // Testing filled()
+    if ($request->filled('category')) {
+        echo "Category is filled.<br>";
+    }
+
+    // Display data
+    echo "Name: " . $name . "<br>";
+    echo "Price: " . $price . "<br>";
+
+    echo "<pre>";
+    print_r($allData);
+    echo "</pre>";
+}
 
     public function search(Request $request)
 {
