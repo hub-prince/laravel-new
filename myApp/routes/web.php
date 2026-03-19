@@ -32,11 +32,11 @@ Route::get('/form/{id?}',function($id = 3){    // optional params
     return "$id form created successfully";
 });
 
-Route::get('/dashbord', function () {       // named route
-    return "Dashboard Page";
-})->name('dashboard');
+// Route::get('/dashbord', function () {       // named route
+//     return "Dashboard Page";
+// })->name('dashboard');
 
-Route::redirect('/dashbord', '/form');   // redirect
+// Route::redirect('/dashbord', '/form');   // redirect
 
 Route::middleware('role:admin')->prefix('admin')->group(function () {    // prefix route group
 
@@ -104,3 +104,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+// ------------------------------PRODUCT CREATE AND VIEW--------------------------------------[//
+
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');

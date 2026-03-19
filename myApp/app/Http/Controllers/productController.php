@@ -20,4 +20,37 @@ class productController extends Controller
 
         return "Final Price: " . $finalPrice . "<br>discount is : ".$discountPercent."%";
     }
+
+    public function create(){
+        return view('products.create');
+    }
+
+    public function store(Request $request){
+        // 1. Using input()
+        $name = $request->input('name');
+
+        // 2. Using property access
+        $price = $request->price;
+
+        // 3. Using all()
+        $allData = $request->all();
+
+        // Testing has()
+        if ($request->has('description')) {
+            echo "Description field exists.<br>";
+        }
+
+        // Testing filled()
+        if ($request->filled('category')) {
+            echo "Category is filled.<br>";
+        }
+
+        // Display data
+        echo "Name: " . $name . "<br>";
+        echo "Price: " . $price . "<br>";
+
+        echo "<pre>";
+        print_r($allData);
+        echo "</pre>";
+    }
 }
