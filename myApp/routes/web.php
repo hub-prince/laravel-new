@@ -110,3 +110,4 @@ require __DIR__.'/auth.php';
 
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
+Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');

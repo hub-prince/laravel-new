@@ -26,6 +26,11 @@
 
         <button type="submit">Add Product</button>
     </form>
-
+    
+<form method="GET" action="{{ route('products.search') }}">
+    <input type="text" name="category" placeholder="Category">
+    <input type="number" name="price" placeholder="Max Price">
+    <button type="submit">Search</button>
+</form>
 </body>
 </html>

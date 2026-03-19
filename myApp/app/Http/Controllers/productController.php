@@ -53,4 +53,28 @@ class productController extends Controller
         print_r($allData);
         echo "</pre>";
     }
+
+    public function search(Request $request)
+{
+    // Get query parameters
+    $category = $request->query('category');
+    $price = $request->query('price');
+
+    // Example static data 
+    $products = [
+        ['name' => 'Laptop', 'category' => 'electronics', 'price' => 50000],
+        ['name' => 'Phone', 'category' => 'electronics', 'price' => 15000],
+        ['name' => 'Shirt', 'category' => 'fashion', 'price' => 1000],
+        ['name' => 'Shoes', 'category' => 'fashion', 'price' => 2000],
+    ];
+
+    // Filter products
+    $filtered = array_filter($products, function ($product) use ($category, $price) {
+        return (!$category || $product['category'] == $category)
+            && (!$price || $product['price'] <= $price);
+    });
+
+    // Return result
+    return response()->json(array_values($filtered));
+}
 }
