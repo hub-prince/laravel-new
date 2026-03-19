@@ -17,8 +17,8 @@ return Application::configure(basePath: dirname(__DIR__))
     // ]); // csrf except post routes
  
     $middleware->alias([
-        'log' => \App\Http\Middleware\LogMiddleware::class,
-        'role' => \App\Http\Middleware\CheckRole::class,
+     
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
     ]);
 })
     ->withExceptions(function (Exceptions $exceptions): void {

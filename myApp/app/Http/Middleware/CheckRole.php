@@ -5,21 +5,24 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+ 
 
-class CheckRole
+class RoleMiddleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  Closure(Request): (Response)  $next
      */
- 
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next,...$roles): Response
     {
-        if ($request->user() && $request->user()->role == 'admin') {
-            return $next($request);
+        if(!$request->user()){
+           return redirect('/login');
         }
 
-        return response('Access Denied. Admins Only.');
+        if(!in_array($request->user()->role,$roles)){
+            abort(403,'unauthorized');
+        }
+        return $next($request);
     }
 }
