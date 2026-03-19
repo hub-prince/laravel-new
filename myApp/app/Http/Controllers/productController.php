@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
 use Illuminate\Http\Request;
 use App\Services\DiscountService;
 use Illuminate\Support\Facades\Log;
@@ -25,16 +26,8 @@ class productController extends Controller
         return view('products.create');
     }
 
-  public function store(Request $request)
+  public function store(StoreProductRequest $request)
 {
-    // ✅ Validation
-    $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'price' => 'required|numeric|min:0',
-        'description' => 'nullable|string',
-        'category' => 'required|string|max:100',
-    ]);
-
     // 1. Using input()
     $name = $request->input('name');
 
