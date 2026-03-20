@@ -21,7 +21,7 @@
     </p>
 
     <p class="text-gray-800 font-bold mt-2">
-        ₹{{ $product->price }}
+        @currency($product->price)
     </p>
 
 </div>

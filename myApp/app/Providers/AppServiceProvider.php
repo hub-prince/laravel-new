@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Log;
 use App\Services\paymentService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
 
@@ -45,5 +46,10 @@ class AppServiceProvider extends ServiceProvider
         });
     
          View::share('company_name', 'Intern Training App');
+
+         Blade::directive('currency',function($amt){
+                   return "<?php echo '₹' . number_format($amt, 2); ?>";
+
+         });
     }
 }
