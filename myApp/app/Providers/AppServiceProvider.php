@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
                 'data' => $data
             ]);
         });
-
+    
          View::share('company_name', 'Intern Training App');
     }
 }

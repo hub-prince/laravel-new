@@ -1,36 +1,42 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html>
+<head>
+    <title>My App</title>
+    @vite('resources/css/app.css')
+</head>
+<body class="bg-gray-100">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+    {{-- Header --}}
+    <header class="bg-white shadow p-4 flex justify-between">
+        <div>
+            <h1 class="text-xl font-bold">My Application</h1>
         </div>
-    </body>
+
+        <div>
+            @if($current_user)
+                <span class="mr-4">User: {{ $current_user->name }}</span>
+            @endif
+            <span>Company: {{ $company_name }}</span>
+        </div>
+    </header>
+
+    {{-- Sidebar --}}
+    <aside class="w-64 bg-gray-800 text-white fixed h-full p-4">
+        <ul>
+            <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+            <li><a href="#">Products</a></li>
+        </ul>
+    </aside>
+
+    {{-- Content --}}
+    <main class="ml-64 p-6">
+        @yield('content')
+    </main>
+
+    {{-- Footer --}}
+    <footer class="bg-white text-center p-4 mt-10">
+        <p>© 2026 My App</p>
+    </footer>
+
+</body>
 </html>
