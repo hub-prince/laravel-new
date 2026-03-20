@@ -78,6 +78,7 @@ class PostController extends Controller
     public function download()
     {
         return response()->download(public_path('sample.txt'));
+        // download
     }
 
     /**
@@ -85,6 +86,8 @@ class PostController extends Controller
      */
     public function macroExample()
     {
+        // macro
+        
         return response::success([
             'message' => 'Custom macro response'
         ]);

@@ -64,6 +64,7 @@ class productController extends Controller
 
 
         return redirect()->route('products.create')->with('success', 'Product created');
+        // redicted and flash message
     }
 
     public function search(Request $request)
