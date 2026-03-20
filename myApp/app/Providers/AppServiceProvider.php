@@ -6,8 +6,9 @@ use App\Services\greetingService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Log;
 use App\Services\paymentService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
-
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind('greeting', function () {
             return new greetingService();
+        });
+
+        View::composer('*', function ($view) {
+            $view->with('current_user',Auth::user());
         });
     }
 
@@ -38,5 +43,7 @@ class AppServiceProvider extends ServiceProvider
                 'data' => $data
             ]);
         });
+
+         View::share('company_name', 'Intern Training App');
     }
 }
