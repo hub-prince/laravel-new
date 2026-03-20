@@ -14,6 +14,8 @@
         No products available.
     </p>
     @endforelse
+
+    
  
 
 </div>

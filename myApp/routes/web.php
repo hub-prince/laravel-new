@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UnsubscribeController;
 
 // -------------------------------------------response types------------------------------------------------------//
 
@@ -130,3 +131,11 @@ Route::get('/products/create', [ProductController::class, 'create'])->name('prod
 Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
 Route::get('/products/search', [ProductController::class, 'search']);
 Route::get('/products/index', [ProductController::class, 'index'])->name('products.index');
+
+ 
+
+Route::get('/unsubscribe/{user}', [UnsubscribeController::class, 'unsubscribe'])
+    ->name('unsubscribe')
+    ->middleware('signed');
+
+Route::get('/test-link', [productController::class, 'generateLink']);

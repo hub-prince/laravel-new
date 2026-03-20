@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\URL;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -103,4 +104,12 @@ class productController extends Controller
             'data'=>$products
         ]);
     }
+
+
+public function generateLink()
+{
+    $url = URL::signedRoute('unsubscribe', ['user' => 1]);
+
+      return view('link', ['url' => $url]);
+}
 }
