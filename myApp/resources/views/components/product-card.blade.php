@@ -1,6 +1,6 @@
 <div class="product-card bg-white shadow-lg rounded-xl p-4 hover:shadow-xl transition">
 
-    <!-- Image -->
+    <!-- Image -- with asset helper -->
     <div class="mb-4">
         <img src="{{ asset('images/'.$product->image) }}"
              class="w-full h-48 object-cover rounded-lg"
