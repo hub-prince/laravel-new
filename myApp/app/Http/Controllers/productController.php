@@ -94,4 +94,12 @@ class productController extends Controller
         $products = Product::all();
         return view('products.index',compact('products'));
     }
+
+      public function indexjson(){
+        $products = Product::all();
+        return response()->json([
+            'status'=>"success",
+            'data'=>$products
+        ]);
+    }
 }
