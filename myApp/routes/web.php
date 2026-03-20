@@ -122,9 +122,11 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-// ------------------------------PRODUCT CREATE AND VIEW--------------------------------------[//
+// ------------------------------PRODUCT CREATE AND VIEW-------------------------------------- 
+
+// named routes
 
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
-Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
+Route::get('/products/search', [ProductController::class, 'search']);
 Route::get('/products/index', [ProductController::class, 'index'])->name('products.index');
