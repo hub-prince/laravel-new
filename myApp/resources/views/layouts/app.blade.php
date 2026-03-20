@@ -2,7 +2,13 @@
 <html>
 <head>
     <title>My App</title>
-    @vite('resources/css/app.css')
+   
+    @vite([
+        'resources/css/app.css',
+        'resources/css/admin.css',
+        'resources/js/app.js',
+        'resources/js/products.js'
+    ])
 </head>
 <body class="bg-gray-100">
 

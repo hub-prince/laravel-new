@@ -1,4 +1,4 @@
-<div class="bg-white shadow-lg rounded-xl p-4 hover:shadow-xl transition">
+<div class="product-card bg-white shadow-lg rounded-xl p-4 hover:shadow-xl transition">
 
     <!-- Image -->
     <div class="mb-4">
@@ -23,5 +23,12 @@
     <p class="text-gray-800 font-bold mt-2">
         @currency($product->price)
     </p>
+
+    <!-- Delete Button -->
+    <button 
+        class="delete-product mt-3 bg-red-500 text-white px-3 py-1 rounded"
+        data-id="{{ $product->id }}">
+        Delete
+    </button>
 
 </div>
