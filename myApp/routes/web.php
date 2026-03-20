@@ -9,9 +9,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 
+// -------------------------------------------response types------------------------------------------------------//
 
 Route::get('/hello', function () {
-    return view('hello');
+
+    return view('hello'); // View Response  
+
 });
 
 Route::get('/company',[homeController::class,'companyInfo']);
@@ -20,9 +23,27 @@ Route::get('/discount',[productController::class,'price'])->middleware('log');
 
 Route::get('/payment',[PaymentController::class,'pay'])->middleware('log'); // GET route
 
-Route::post('/post',function(){         // POST route
-    return "created successfully";
+
+Route::get('/json', function () {
+    return response()->json([               // JSON response
+        'name' => 'Intern',
+        'role' => 'Developer'
+    ]);
 });
+
+
+Route::get('/array', function () {
+    return [                                // Array response (auto converted to JSON)
+        'framework' => 'Laravel',
+        'version' => '10'
+    ];
+});
+
+Route::post('/post',function(){         // POST route
+    return response("created successfully"); // String response
+});
+
+// ----------------------------------------------------------------------------------------------------------//
 
 Route::get('/post/{id}',function($id){      //parameters
     return "$id post created successfully";
@@ -79,6 +100,7 @@ Route::view('/home','home',['users'=>["prince","jaimin","keval","meet","swet"]])
 
 
 // --------------------------------AUTH WITH BREEZ------------------------------------- //
+
 Route::get('/', function () {
     return view('welcome');
 });

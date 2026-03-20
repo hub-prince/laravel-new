@@ -36,3 +36,7 @@
 @else
     <p class="text-center text-gray-500 mt-10">No products found.</p>
 @endif
+
+<a href="{{ route('admin.dashboard') }}" class="btn btn-primary right-10 top-0 absolute px-3 py-2 text-white border bg-blue-500 rounded-lg">
+    dashboard
+</a>
