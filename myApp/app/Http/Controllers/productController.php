@@ -74,12 +74,7 @@ class productController extends Controller
         $price = $request->query('price');
 
         // Example static data 
-        $products = [
-            ['name' => 'Laptop', 'category' => 'electronics', 'price' => 50000],
-            ['name' => 'Phone', 'category' => 'electronics', 'price' => 15000],
-            ['name' => 'Shirt', 'category' => 'fashion', 'price' => 1000],
-            ['name' => 'Shoes', 'category' => 'fashion', 'price' => 2000],
-        ];
+        $products = (array)Product::all();
 
         // Filter products
         $filtered = array_filter($products, function ($product) use ($category, $price) {
@@ -92,8 +87,13 @@ class productController extends Controller
     }
 
     public function index(){
+
+        //index product list
+
         $products = Product::all();
-        return view('products.index',compact('products'));
+        $total = count($products);
+        $title = 'Product Dashboard';
+        return view('products.index',compact('products','total','title'));
     }
 
       public function indexjson(){
